@@ -1,0 +1,62 @@
+49.	#include<iostream>  
+50.	#include<string>  
+51.	using namespace std;
+52.	
+53.	int main()
+54.	{
+55.		char a[100], b[10000];
+56.		int i = 0, used = 0;
+57.	
+58.		while (cin >> a)
+59.		{
+60.			if (strcmp(a, "<br>") == 0)
+61.			{
+62.				b[i++] = '\n';
+63.	
+64.				used = 0;
+65.	
+66.				continue;
+67.			}
+68.	
+69.			if (strcmp(a, "<hr>") == 0)
+70.			{
+71.				if (used != 0)
+72.					b[i++] = '\n';
+73.	
+74.				for (int j = 0; j<80; j++)
+75.					b[i++] = '-';
+76.	
+77.				b[i++] = '\n';
+78.	
+79.				used = 0;
+80.	
+81.				continue;
+82.			}
+83.	
+84.			int len = strlen(a);
+85.			if (len + 1 + used>80)
+86.			{
+87.				b[i++] = '\n';
+88.	
+89.				for (int j = 0; j<len; j++)
+90.					b[i++] = a[j];
+91.	
+92.				used = len;
+93.			}
+94.			else
+95.			{
+96.				if (used != 0)
+97.					b[i++] = ' ';
+98.	
+99.				for (int j = 0; j<len; j++)
+100.					b[i++] = a[j];
+101.	
+102.				used += len + 1;
+103.			}
+104.		}
+105.	
+106.		b[i] = 0;
+107.		cout << b << endl;
+108.	
+109.		return 0;
+110.	}
