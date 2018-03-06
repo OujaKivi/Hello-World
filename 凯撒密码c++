@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cmath>
+#include <string.h>
+using namespace std;
+int main()
+{
+	char a[105], ch;
+	int k;
+	cout << "请输入密匙 k ：";
+	cin >> k;
+	do
+	{
+		cout << "请选择加密解密，1(加密) or 0(解密)：";
+		cin >> ch;
+		if (ch == '1')
+		{
+			cout << "请输入字母明文字符：";
+			cin >> a;
+			for (int i = 0; i<strlen(a); i++)
+			{
+				if (a[i] <= 'z'&&a[i] >= 'a')
+				{
+					cout << (char)((a[i] - 'a' + k) % 26 + 'a');
+				}
+				else if (a[i] <= 'Z'&&a[i] >= 'A')
+				{
+					cout << (char)((a[i] - 'A' + k) % 26 + 'A');
+				}
+			}
+		}
+		else if (ch == '0')
+		{
+			cout << "请输入字母密文字符：";
+			cin >> a;
+			for (int i = 0; i<strlen(a); i++)
+			{
+				if (a[i] <= 'z'&&a[i] >= 'a')
+				{
+					cout << (char)((a[i] - 'a' + 26 - k) % 26 + 'a');
+				}
+				else if (a[i] <= 'Z'&&a[i] >= 'A')
+				{
+					cout << (char)((a[i] - 'A' + 26 - k) % 26 + 'A');
+				}
+			}
+		}
+		else //if(ch!='\n')
+			cout << "输入错误请重新输入。。。";
+	} while (ch != '1'&&ch != '0');
+	return 0;
+}
